@@ -210,7 +210,7 @@ cloud.docker.com](https://cloud.docker.com/u/bjarthur/repository/docker/bjarthur
     REPOSITORY        TAG    IMAGE ID     CREATED      SIZE
     bjarthur/songexplorer latest b63784a710bb 20 hours ago 2.27GB
 
-Use `notepad` to create two ".bat" files.
+On Windows, use `notepad` to create two ".bat" files.
 
     
     "SONGEXPLORER_BIN.bat":
@@ -224,8 +224,8 @@ Use `notepad` to create two ".bat" files.
         -e SONGEXPLORER_BIN -h=`hostname` -p 5006:5006 ^
         bjarthur/songexplorer gui.sh <path-to-configuration.pysh> 5006
 
-The equivalent on Mac and Linux is to put these definitions in your .bashrc (or
-.zshrc file on Mac OS X Catalina) file:
+On Mac and Linux put the following  definitions in your .bashrc file (or
+.zshrc file on Mac OS X Catalina)`:
 
     export SONGEXPLORER_BIN="docker run \
         [-v <disk-drive>] [-u <userid>] [-w <working-directory] \
@@ -274,12 +274,19 @@ recordings either locally on the host computer, or remotely on a workstation or
 a cluster.  You specify how you want this to work by editing
 "configuration.pysh".
 
-Copy the exemplar configuration file out of the container and into your home
-directory:
+Copy the examplar configuration file from github 
+
+https://github.com/JaneliaSciComp/SongExplorer/blob/master/configuration.pysh
+
+and place it in the folder you will use as your songexplorer working directory (i.e. [-w <working-directory])/
+
+(
+Alternatively, you may be able to copy the exemplar configuration file out of the docker container and into your working directory:
 
     $ $SONGEXPLORER_BIN cp /opt/songexplorer/configuration.pysh $PWD [%CD% on Windows]
+)
 
-Inside you'll find many variables which control where SongExplorer does its work:
+The configuration.pysh file includes many variables that control where SongExplorer does its work:
 
     $ grep _where= configuration.pysh
     default_where="local"
